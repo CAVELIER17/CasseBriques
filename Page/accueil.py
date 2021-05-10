@@ -46,8 +46,8 @@ class Accueil:
             acceleration = 1.014
             brique = 12
         elif self.difficulter == Niveaux[3]:
-            scoreMax = 500
-            acceleration = 1.025
+            scoreMax = 300
+            acceleration = 1.02
             brique = 16
         return scoreMax, acceleration, brique
 

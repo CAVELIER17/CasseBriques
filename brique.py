@@ -8,16 +8,7 @@ class Brique:
     def __init__(self, x, y):
         self.val = random.choice([0, 0, 3, 8, 12, 18])
 
-        if 1 <= self.val < 5:
-            color = Vector3(0, 255, 0)
-        elif 5 <= self.val < 10:
-            color = Vector3(255, 255, 0)
-        elif 10 <= self.val < 15:
-            color = Vector3(255, 125, 0)
-        elif 15 <= self.val <= 20:
-            color = Vector3(255, 0, 0)
-        else:
-            color = Vector3(0, 0, 0)
+        color = self.CouleurF()
 
         self.couleur = color
 
@@ -25,19 +16,20 @@ class Brique:
 
     def afficher(self, core):
 
-        if 1 <= self.val < 5:
-            color = Vector3(0, 255, 0)
-        elif 5 <= self.val < 10:
-            color = Vector3(255, 255, 0)
-        elif 10 <= self.val < 15:
-            color = Vector3(255, 125, 0)
-        elif 15 <= self.val <= 20:
-            color = Vector3(255, 0, 0)
-        else:
-            color = Vector3(0, 0, 0)
+        color = self.CouleurF()
 
         self.couleur = color
-
         if self.val != 0:
             pygame.draw.rect(core.screen, self.couleur, (self.position.x, self.position.y, 35, 35))
 
+    def CouleurF(self):
+
+        if 1 <= self.val < 8:
+            coleurF = int(round(255 - self.val * (255 / 8)))
+            color = Vector3(coleurF, 255, 0)
+        elif 8 <= self.val <= 18:
+            coleurF = int(round((18-self.val) * 255 / 10))
+            color = Vector3(255, coleurF, 0)
+        else:
+            color = Vector3(0, 0, 0)
+        return color
